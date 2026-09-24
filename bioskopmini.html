@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website pemesanan Mini Cinema">
+  <title>Mini Cinema — Pesan Tiket</title>
+  <link rel="stylesheet" href="bioskopmini.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">MC</span><div><strong>Mini Cinema</strong><small>Entertainment • Ticketing</small></div></div>
+    <nav>
+      <a href="" target="_blank" rel="noopener noreferrer">Pesan Makanan(Belum Tersedia)</a>
+      <a href="" target="_blank" rel="noopener noreferrer">Rental PS(Belum Tersedia)</a>
+      <a href="#promo">Promo</a><a href="#booking">Pesan Tiket</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="pill">🎬 MINI CINEMA</span>
+        <h1>Nonton nyaman, pesan tiket lebih mudah.</h1>
+        <p>Pilih film, waktu mulai, jumlah tiket, lalu kirim detail pesanan ke WhatsApp admin.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#films">Pilih Film</a>
+          <a class="btn ghost" href="#about">Tentang Kami</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span>🔥 PROMO</span>
+        <h3>Harga tiket mulai Rp3.000</h3>
+        <p>Gratis WiFi • Ruangan nyaman • Pemesanan via WhatsApp</p>
+      </div>
+    </section>
+
+    <section class="wifi">
+      <div><b>📶 Gratis WiFi #1</b><span>Username:  Lantai 2</span><span>Password: Setelah pesan tiket, minta pasword ke admin</span></div>
+      <div><b>📶 Gratis WiFi #2</b><span>Username: Utama1</span><span>Password:  Setelah pesan tiket, minta pasword ke admin</span></div>
+    </section>
+
+
+    <section id="promo" class="section promo-section">
+      <div class="section-head">
+        <div><span class="eyebrow">PROMO SPESIAL</span><h2>🎁 Ajak Teman, Dapat Gratis Nonton</h2><p>Bagikan Mini Cinema ke temanmu dan nikmati promo menarik.</p></div>
+      </div>
+      <div class="promo-grid">
+        <article class="promo-card featured">
+          <div class="promo-icon">👥</div>
+          <span class="promo-tag">PROMO TEMAN</span>
+          <h3>Ajak 1 Teman = Gratis 1 Film</h3>
+          <p>Ajak teman baru yang melakukan pembelian tiket. Setelah pesanan teman terkonfirmasi, kamu mendapatkan 1 tiket gratis untuk kunjungan berikutnya.</p>
+          <strong>Syarat: 1 teman baru • 1 tiket gratis</strong>
+        </article>
+        <article class="promo-card">
+          <div class="promo-icon">🎟️</div>
+          <span class="promo-tag">WEEKDAY</span>
+          <h3>Happy Hour Mini Cinema</h3>
+          <p>Promo harga khusus untuk sesi weekday yang ditentukan admin.</p>
+          <strong>Kode: MINIHEMAT</strong>
+        </article>
+        <article class="promo-card">
+          <div class="promo-icon">🍿</div>
+          <span class="promo-tag">BUNDLING</span>
+          <h3>Datang Rame-Rame</h3>
+          <p>Pesan minimal 10 tiket dalam satu pesanan dan dapat bonus 1 tiket setiap 10 orang.</p>
+          <strong>Minimal 10 tiket</strong>
+        </article>
+        <article class="promo-card">
+          <div class="promo-icon">📶</div>
+          <span class="promo-tag">GRATIS</span>
+          <h3>WiFi Gratis</h3>
+          <p>Nikmati WiFi gratis selama berada di Mini Cinema.</p>
+          <strong>2 jaringan WiFi tersedia</strong>
+        </article>
+      </div>
+      <div class="promo-rules">
+        <b>📌 Ketentuan promo:</b>
+        <span>Promo dapat berubah sesuai kebijakan Mini Cinema.</span>
+        <span>1 orang tidak dapat memakai promo teman berulang untuk teman yang sama.</span>
+        <span>Konfirmasi promo dilakukan oleh admin melalui WhatsApp.</span>
+      </div>
+    </section>
+
+    <section id="films" class="section">
+      <div class="section-head">
+        <div><span class="eyebrow">KATALOG FILM</span><h2>Pilih Film</h2><p id="catalogStatus">Memuat katalog lokal…</p></div>
+        <div class="catalog-count" id="catalogCount">0 film</div>
+      </div>
+
+      <div class="controls">
+        <input id="filmSearch" type="search" placeholder="🔎 Cari judul film..." autocomplete="off">
+        <select id="genreFilter"><option value="">Semua genre</option></select>
+        <select id="yearFilter"><option value="">Semua tahun</option></select>
+        <select id="sortFilter">
+          <option value="az">A–Z</option>
+          <option value="newest">Tahun terbaru</option>
+          <option value="oldest">Tahun terlama</option>
+        </select>
+      </div>
+
+      <div id="filmGrid" class="film-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty hidden">Film tidak ditemukan. Coba kata kunci atau filter lain.</div>
+      <div class="pager">
+        <button id="prevPage" class="btn ghost" type="button">← Sebelumnya</button>
+        <span id="pageInfo">Halaman 1</span>
+        <button id="nextPage" class="btn ghost" type="button">Berikutnya →</button>
+      </div>
+    </section>
+
+    <section id="booking" class="section booking-section">
+      <div class="section-head">
+        <div><span class="eyebrow">PEMESANAN</span><h2>Detail Pesanan</h2><p>Isi data dengan benar sebelum mengirim pesanan.</p></div>
+      </div>
+      <div class="booking-layout">
+        <form id="bookingForm" class="booking-card" novalidate>
+          <label>Film
+            <input id="film" name="film" type="text" placeholder="Pilih film dari katalog di atas" readonly required>
+          </label>
+
+          <div class="two-col">
+            <label>Nama pembeli
+              <input id="name" name="name" type="text" placeholder="Nama lengkap" required>
+            </label>
+            <label>Umur
+              <input id="age" name="age" type="number" min="1" max="120" placeholder="Umur" required>
+            </label>
+          </div>
+
+          <div class="two-col">
+            <label>Nomor WhatsApp pembeli
+              <input id="buyerPhone" name="buyerPhone" type="tel" placeholder="08xxxxxxxxxx" required>
+            </label>
+            <label>Nomor tiket
+              <input id="ticketNumber" name="ticketNumber" type="text" readonly>
+            </label>
+          </div>
+
+          <div class="two-col">
+            <label>Lokasi bioskop
+              <select id="location" name="location" required>
+                <option value="">Pilih lokasi</option>
+                <option>Studio 1</option>
+                <option>Studio 2(Belum Tersedia)</option>
+                <option>Studio 3(Belum Tersedia)</option>
+                <option>Studio 4(Belum Tersedia)</option>
+              </select>
+            </label>
+            <label>Waktu mulai
+              <input id="startTime" name="startTime" type="datetime-local" required>
+            </label>
+          </div>
+
+          <div class="two-col">
+            <label>Durasi film
+              <input id="duration" name="duration" type="text" placeholder="Otomatis setelah pilih film" readonly>
+            </label>
+            <label>Jumlah tiket
+              <input id="qty" name="qty" type="number" min="1" max="20" value="1" required>
+            </label>
+          </div>
+
+          <label>Metode pembayaran
+            <select id="payment" name="payment" required>
+              <option value="">Pilih pembayaran</option>
+              <option>QRIS</option>
+              <option>E-Wallet — DANA</option>
+              <option>E-Wallet — OVO</option>
+              <option>E-Wallet — GoPay</option>
+              <option>E-Wallet — ShopeePay</option>
+              <option>Cash — Bayar di tempat</option>
+            </select>
+          </label>
+
+          <label>Catatan
+            <textarea id="note" name="note" rows="3" placeholder="Contoh: minta kursi tengah, dll."></textarea>
+          </label>
+
+          <div class="price-box">
+            <span>Harga tiket</span><strong id="unitPrice">Rp3.000</strong>
+            <span>Total</span><strong id="totalPrice">Rp3.000</strong>
+          </div>
+
+          <button class="btn primary full" type="submit">📲 Kirim Pesanan ke WhatsApp</button>
+          <p class="form-note"><code></code></p>
+        </form>
+
+        <aside class="cart-card">
+          <span class="eyebrow">KERANJANG</span>
+          <h3>Ringkasan Pesanan</h3>
+          <div id="cartSummary" class="cart-summary">Belum ada film dipilih.</div>
+          <button id="clearFilm" class="btn danger full" type="button">Hapus Pilihan Film</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <span class="eyebrow">TENTANG TOKO KAMI</span>
+      <h2>Mini Cinema</h2>
+      <p>Kami menyediakan pengalaman bioskop mini dengan pemesanan tiket sederhana, pilihan tempat, WiFi gratis, dan bantuan admin melalui WhatsApp.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div><b>Mini Cinema</b><span>© 2026 • Website pemesanan tiket</span></div>
+    <a href="#booking">Pesan Sekarang</a>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="bioskopmini.js"></script>
+</body>
+</html>
